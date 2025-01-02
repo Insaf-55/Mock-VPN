@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional VPN</title>
+    <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* VPN Container */
+.vpn-container {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 400px;
+}
+
+/* Header */
+.vpn-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.vpn-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #f3f4f6;
+    margin: 0;
+}
+
+/* Status */
+.vpn-status {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#status {
+    font-weight: bold;
+    color: #f87171; /* Disconnected */
+    transition: color 0.3s ease;
+}
+
+/* Circle Animation */
+.vpn-circle {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+    background: #6b7280;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button */
+button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background: #2563eb;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Server List */
+.server-list {
+    margin-top: 20px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Footer */
+.vpn-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+/* Connected Styles */
+.connected #vpn-circle {
+    background: #10b981; /* Connected - Green */
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+}
+
+.connected #status {
+    color: #10b981; /* Connected */
+}</style></head>
+<body>
+    <div class="vpn-container">
+        <header class="vpn-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyjqWUveDJ5qP9T-hnZezomIC11r1Sw5HSWg&amp;usqp=CAU" alt="VPN Logo" class="vpn-logo">
+            <h1>SecureConnect VPN</h1>
+        </header>
+        <div class="vpn-status">
+            <p>Status: <span id="status">Disconnected</span></p>
+        </div>
+        <div class="vpn-circle" id="vpn-circle"></div>
+        <button id="toggle-vpn">Connect</button>
+        <div class="server-list">
+            <label for="server-select">Choose Server:</label>
+            <select id="server-select">
+                <option value="us">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="de">Germany</option>
+                <option value="jp">Japan</option>
+            </select>
+        </div>
+    </div>
+    <footer class="vpn-footer">
+        <p>© 2025 SecureConnect VPN. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">document.addEventListener("DOMContentLoaded", () => {
+    const statusElement = document.getElementById("status");
+    const toggleButton = document.getElementById("toggle-vpn");
+    const vpnCircle = document.getElementById("vpn-circle");
+    const serverSelect = document.getElementById("server-select");
+
+    let isConnected = false;
+
+    toggleButton.addEventListener("click", () => {
+        isConnected = !isConnected;
+
+        if (isConnected) {
+            const selectedServer = serverSelect.options[serverSelect.selectedIndex].text;
+            statusElement.textContent = `Connected to ${selectedServer}`;
+            document.body.classList.add("connected");
+            toggleButton.textContent = "Disconnect";
+        } else {
+            statusElement.textContent = "Disconnected";
+            document.body.classList.remove("connected");
+            toggleButton.textContent = "Connect";
+        }
+    });
+});</script></body></html>
